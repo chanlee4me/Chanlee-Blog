@@ -1,3 +1,15 @@
+---
+title: "docker 笔记"
+description: "docker基本概念与常见命令，以及一些使用过程中遇到的问题"
+pubDate: "Jul 05 2025"
+image: /image/image3.png
+categories:
+  - tools
+tags:
+  - Makrdown
+badge: Pin
+---
+
 参考文档：[docker 教程](https://www.runoob.com/docker/docker-tutorial.html)
 
 <h1 id="zouJW">前言</h1>
