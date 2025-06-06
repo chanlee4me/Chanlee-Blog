@@ -117,7 +117,18 @@ docker 卷是一种持久化机制，将数据落盘于硬盘上，不会因为�
 
 `docker attach`进入容器
 
+
+
 `docker exec`进入容器
+
+> ```dockerfile
+> docker exec -it backend_wjkz /bin/bash
+> ```
+>
+> -it：表示以交互模式进入容器
+> /bin/bash：指定使用 Bash 终端（如果容器支持）
+
+
 
 `docker export`导出容器
 
@@ -153,19 +164,25 @@ docker 卷是一种持久化机制，将数据落盘于硬盘上，不会因为�
 
 `FROM`：指定基础镜像。每个 Dockerfile 的第一条指令必须是 `FROM`
 
-> `FROM python:3.9`
+> ```dockerfile
+> FROM python:3.9
+> ```
 
 
 
 `RUN`：在镜像构建过程中执行命令。常用于安装软件包、更新系统等
 
-> `RUN apt-get update && apt-get install ffmpeg inetutils-ping sshpass nano vim -y`
+> ```dockerfile
+> RUN apt-get update && apt-get install ffmpeg inetutils-ping sshpass nano vim -y
+> ```
 
 
 
 `COPY`：将文件或目录从构建上下文（通常是 Dockerfile 所在的目录）**复制到镜像的文件系统中**
 
-> `COPY ./requirements.txt /opt/requirements.txt`
+> ```dockerfile
+> COPY ./requirements.txt /opt/requirements.txt
+> ```
 
 
 
@@ -237,6 +254,8 @@ docker 卷是一种持久化机制，将数据落盘于硬盘上，不会因为�
 - `--no-deps`：不启动链接的服务。
 - `<service_name>`：只启动指定的服务及其依赖。
 
+**说明**：如果后端代码修改后，直接docker-compose up 就可以将最新的代码更新到容器中去。（后面测试一下不用docker-compose stop 能否实现更新）
+
 
 
 **`docker-compose build`**：构建或重新构建服务中定义的镜像。
@@ -295,6 +314,10 @@ docker 卷是一种持久化机制，将数据落盘于硬盘上，不会因为�
 常用选项：
 
 - `-t, --timeout TIMEOUT`：指定停止超时时间（默认为 10 秒）。
+
+**示例**：`docker-compose stop`直接停止正在运行的容器
+
+
 
 
 
