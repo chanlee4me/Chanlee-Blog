@@ -2,7 +2,7 @@
 title: "docker 笔记"
 description: "docker基本概念与常见命令，以及一些使用过程中遇到的问题"
 pubDate: "Jul 05 2025"
-image:/image/category/tools/docker.jpg
+image: "/image/category/tools/docker.jpg" 
 categories:
   - tools
 tags:
