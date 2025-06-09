@@ -2,7 +2,7 @@
 title: "macOS如何管理python环境"
 description: "介绍了 conda 的基本概念，以及macOS如何利用conda管理虚拟环境"
 pubDate: "Jul 08 2025"
-image: "/image/category/tools/conda.jpg" 
+image: "/image/category/tools/conda.png" 
 categories:
   - tools
 tags:
