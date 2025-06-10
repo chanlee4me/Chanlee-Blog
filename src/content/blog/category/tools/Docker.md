@@ -103,9 +103,42 @@ docker 卷是一种持久化机制，将数据落盘于硬盘上，不会因为�
 
 # Docker 常用命令
 
+## 网络
+
+`docker network create rocketmq`  创建一个名为rocketmq 的 Docker 自定义网络
+
+> - **创建隔离的网络环境**：默认情况下，Docker 容器会连接到 `bridge` 网络。通过该命令创建了一个独立的网络 `rocketmq`，**后续加入该网络的容器可以相互通信**，同时**与其他未加入的容器隔离**。
+>
+> - **支持容器间直接通信：**在 `rocketmq` 网络中的容器可以通过**容器名称**（而非 IP 地址）直接互相访问（Docker 内置 DNS 解析）。例如：
+>
+>   ```dockerfile
+>   # 假设启动 RocketMQ NameServer 容器时指定了名称 `namesrv`
+>   docker run --name namesrv --network rocketmq ...
+>   ```
+>
+>   其他同网络的容器可直接通过主机名 `namesrv` 访问该服务。
+>
+> - **网络驱动**：未指定时默认使用 `bridge` 驱动
+>
+> - **子网和网关**：自动分配（也可通过 `--subnet`、`--gateway` 手动配置）
+>
+> - **名称解析**：自动启用容器名称到 IP 的映射
+
 ## 容器
 
 `docker run`创建并启动容器
+
+> `-d`： 以"detached"（后台）模式运行容器
+>
+> `--name rmqnamesrv` ：- 为容器指定名称为"rmqnamesrv"
+>
+> `-p 9876:9876` - 将主机的9876端口映射到容器的9876端口
+>
+> `--network rocketmq` - 将容器连接到名为"rocketmq"的Docker网络
+>
+> `镜像名称`：指定使用的镜像
+>
+> `sh xxx`：在容器内执行的命令
 
 `docker start`启动容器
 
@@ -121,12 +154,9 @@ docker 卷是一种持久化机制，将数据落盘于硬盘上，不会因为�
 
 `docker exec`进入容器
 
-> ```dockerfile
-> docker exec -it backend_wjkz /bin/bash
-> ```
+> `-it`：表示以交互模式进入容器
 >
-> -it：表示以交互模式进入容器
-> /bin/bash：指定使用 Bash 终端（如果容器支持）
+> `/bin/bash`：指定使用 Bash 终端（如果容器支持）
 
 
 
@@ -136,7 +166,11 @@ docker 卷是一种持久化机制，将数据落盘于硬盘上，不会因为�
 
 `docker rm`删除容器
 
+> 容器如果处于运行态，那么需要先终止容器，再删除
+
 `docker logs`查看日志
+
+> `-f` 或 `--follow`：持续跟踪日志输出。
 
 ## 镜像
 
